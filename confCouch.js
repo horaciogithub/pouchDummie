@@ -1,6 +1,13 @@
 
 // ENLAZADO A COUCHDB https://pouchdb.com/getting-started.html
-var db = new PouchDB('http://localhost:5984/gatunes');
+var db = new PouchDB('http://localhost:5984/gatunes', {
+    auth: {
+        username: 'root',
+        password: 'neglected1a4'
+    }
+});
+db.sync(db, { live: true, retry: true }).on('error', console.log.bind(console));
+
 var doc =
 {
 
@@ -14,7 +21,7 @@ var doc =
                 "Comer",
                 "Jugar con su palito de jugar"
             ]
-        }, 
+        },
         {
             "name": "Java",
             "age": 1,
